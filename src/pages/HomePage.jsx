@@ -7,15 +7,14 @@ import {
   Container,
   Select,
   Input,
-  HStack,
-  VStack,
+  HStack, 
   Image,
   Flex,
   chakra,
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import CategoryCarousel from "../components/CategoryCarousel";
- 
+
 const HomePage = () => {
   return (
     <>
