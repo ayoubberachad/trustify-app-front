@@ -2,10 +2,11 @@
 import React from 'react';
 import { Box, Button, Container, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
- import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
   {
@@ -46,7 +47,16 @@ const categories = [
 ];
 
 const CategoryCard = ({ title, count, image }) => (
-  <Box bg="white" borderRadius="xl" p={5} textAlign="center" boxShadow="md">
+  <Box
+    _hover={{ borderColor: "#22be0d" }}
+    bg="white"
+    borderRadius="xl"
+    p={5}
+    textAlign="center"
+    boxShadow="md"
+    border="1px solid transparent" 
+    transition="border-color 0.2s"
+  >
     <Image src={image} alt={title} mb={4} mx="auto" />
     <Text fontWeight="semibold" fontSize="lg">{title}</Text>
     <Text fontSize="sm" color="gray.600">{count}</Text>
@@ -54,17 +64,49 @@ const CategoryCard = ({ title, count, image }) => (
 );
 
 const CategoryCarousel = () => {
+  const navigate = useNavigate();
+
   return (
-    <Box bg="gray.50" py={28}>
-      <Container maxW="8xl">
+    <Box  bg="#f7f5f0" py={28}>
+      <Container bg="#f7f5f0" maxW="8xl">
         <Flex justify="space-between" align="end" mb={10} wrap="wrap" gap={4}>
           <Box>
             <Heading size="lg" mb={2}>Que cherchez-vous ?</Heading>
             <Text fontSize="md" color="gray.600">Faites votre choix, on vous recommande le meilleur..</Text>
           </Box>
           <Flex gap={3}>
-            <Button className="swiper-prev" leftIcon={<ChevronLeftIcon />} variant="outline" />
-            <Button className="swiper-next" rightIcon={<ChevronRightIcon />} variant="outline" />
+            <Button
+            
+              className="swiper-prev"
+              variant="outline"
+              bg="#f7f5f0"
+              borderColor="#22be0d"
+              color="#22be0d"
+              borderRadius="full"
+              borderWidth="2px"
+              p="0"
+              w="40px"
+              h="40px"
+            >
+              <ChevronLeftIcon />
+            </Button>
+            <Button
+              className="swiper-next"
+              variant="outline"
+              bg="#f7f5f0"
+              borderColor="#22be0d"
+              color="#22be0d"
+              borderRadius="full"
+              borderWidth="2px"
+              p="0"
+              w="40px"
+              h="40px"
+              rightIcon={<ChevronRightIcon />}
+            >
+
+            </Button>
+
+
           </Flex>
         </Flex>
 
@@ -84,8 +126,10 @@ const CategoryCarousel = () => {
           }}
         >
           {categories.map((cat, index) => (
-            <SwiperSlide key={index}>
-              <CategoryCard {...cat} />
+            <SwiperSlide  key={index}>
+              <Box         onClick={() => navigate(`/categories/restaurants_cafe`)} style={{ cursor: "pointer" }}>
+                <CategoryCard       {...cat} />
+              </Box>
             </SwiperSlide>
           ))}
         </Swiper>
