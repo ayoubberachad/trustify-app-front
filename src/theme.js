@@ -6,6 +6,7 @@ const theme = extendTheme({
   colors: {
     brand: {
       secondary: "#22be0d", // ton bouton secondaire
+ 
     },
   },
   components: {
